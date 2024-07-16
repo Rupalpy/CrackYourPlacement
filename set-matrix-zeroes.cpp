@@ -1,33 +1,43 @@
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        int n=nums.size();
-        sort(nums.begin(),nums.end());
-        vector<vector<int>> ans;
+    void setZeroes(vector<vector<int>>& matrix) {
+        int n=matrix.size();
+        int m=matrix[0].size();
+        int col0=1;
         for(int i=0;i<n;i++){
-            if(i!=0 && nums[i]==nums[i-1]) continue;
-            int j=i+1;
-            int k=n-1;
-            while(j<k){
-                int sum=nums[i]+nums[j]+nums[k];
-                if(sum<0) {
-                    j++;
-                }
-                else if(sum>0){
-                    k--;
-                }
-                else{
-                    vector<int> temp={nums[i],nums[j],nums[k]};
-                    ans.push_back(temp);
-                    j++;
-                    k--;
-                    while(j<k && nums[j]==nums[j-1]) j++;
-                    while(j<k && nums[k]==nums[k+1]) k--;
+            for(int j=0;j<m;j++){
+                if(matrix[i][j]==0){
+                    matrix[i][0]=0;
+                    if(j!=0){
+                        matrix[0][j]=0;
+                    }
+                    else{
+                        col0=0;
+                    }
                 }
             }
-            
         }
-        return ans;
+        for(int i=1;i<n;i++){
+            for(int j=1;j<m;j++){
+                if(matrix[i][j]!=0){
+                    if(matrix[i][0]==0 || matrix[0][j]==0){
+                    matrix[i][j]=0;
+                }
+                
+                }
+                
+            }}
+        if(matrix[0][0]==0){
+            for(int j=0;j<m;j++){
+                matrix[0][j]=0;
+            }
+        }
+        if(col0==0){
+            for(int i=0;i<n;i++){
+                matrix[i][0]=0;
+            }
+        }
+        
     }
 };
 
